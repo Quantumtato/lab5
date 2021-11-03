@@ -1,4 +1,6 @@
-import stepper
+from stepper import stepper
+from PCF8591 import PCF8591
+
 import RPi.GPIO as GPIO
 import time
 
@@ -10,7 +12,8 @@ for pin in pins:
   GPIO.setup(pin, GPIO.OUT, initial=0)
 
 step1 = stepper(pins)
-step1.pins
+
+
 
 
 try:

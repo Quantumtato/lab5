@@ -1,0 +1,25 @@
+#!/usr/bin/python37all
+import cgi
+import json
+data = cgi.FieldStorage()
+s1 = data.getvalue('slider1')
+s2 = data.getvalue('option')
+imput = {"slider1":s1, "option":s2}
+
+with open('lab5.txt', 'w') as f:
+  json.dump(imput,f)
+
+print('Content-type: text/html\n\n')
+
+print("""
+<html>
+<form action="/cgi-bin/lab4.py" method="POST">
+        <br>
+        <input type="submit" value="Click to Home">
+""")
+print('<br> <br>')
+print('<input type="range" name="angle" min ="0" max="360" value ="%s"><br>' %s1)
+print("""<input type="submit" value="Change Angle">
+</form>
+</html>
+""")
