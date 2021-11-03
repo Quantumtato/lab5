@@ -3,7 +3,7 @@ import cgi
 import json
 data = cgi.FieldStorage()
 s1 = data.getvalue('angle')
-s2 = data.getvalue('Click to Home')
+s2 = data.getvalue('home')
 imput = {"angle":s1,"home":s2}
 
 with open('lab5.txt', 'w') as f:
@@ -15,6 +15,7 @@ print("""
 <html>
 <form action="/cgi-bin/stepper_control.cgi" method="POST">
         <br>
+        <input type="hidden" name="home" value="1">
         <input type="submit" value="Click to Home">
 """)
 print('<br> <br>')
