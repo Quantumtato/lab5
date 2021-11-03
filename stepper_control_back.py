@@ -2,6 +2,7 @@ from stepper import stepper
 import json
 import RPi.GPIO as GPIO
 import time
+import os
 
 GPIO.setmode(GPIO.BCM)
 
@@ -17,10 +18,18 @@ while True:
     data = json.load(f)
     angle = float(data['angle']) 
     home = float(data['home']) 
-    if home == 1:
-      step1.zero()
-    else:
-      step1.moveSteps(256*angle/360,1)
+
+  if home == 1:
+    step1.zero()
+  else:
+    step1.moveSteps(256*angle/360,1)
+
+  os.remove(lab5.txt)
+
+  with open("lab5.txt", 'w') as f:
+    data['home'] = 0
+    data['angle'] = 0
+    json.dump(data, f)
   time.sleep(0.01)
 
 
