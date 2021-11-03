@@ -2,9 +2,9 @@
 import cgi
 import json
 data = cgi.FieldStorage()
-s1 = data.getvalue('slider1')
-s2 = data.getvalue('option')
-imput = {"slider1":s1, "option":s2}
+s1 = data.getvalue('angle')
+s2 = data.getvalue('Click to Home')
+imput = {"angle":s1,"home":s2}
 
 with open('lab5.txt', 'w') as f:
   json.dump(imput,f)

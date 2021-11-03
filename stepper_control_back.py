@@ -1,6 +1,5 @@
 from stepper import stepper
-from PCF8591 import PCF8591
-
+import json
 import RPi.GPIO as GPIO
 import time
 
@@ -13,7 +12,16 @@ for pin in pins:
 
 step1 = stepper(pins)
 
-
+while True:
+  with open("lab5.txt", 'r') as f:
+    data = json.load(f)
+    angle = float(data['angle']) 
+    home = float(data['home']) 
+    if home == 1:
+      step1.zero()
+    else:
+      step1.moveSteps(256*angle/360,1)
+  time.sleep(0.01)
 
 
 try:
